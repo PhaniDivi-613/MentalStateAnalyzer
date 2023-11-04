@@ -1,1 +1,1 @@
-from .vocabulary import Vocabulary
+from .dictionary import Dictionary

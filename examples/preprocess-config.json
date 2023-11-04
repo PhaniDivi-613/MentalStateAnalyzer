@@ -1,0 +1,9 @@
+{
+    "__class__": "PreprocessConfig",
+    "params": {
+        "json_file": "twitter-1h1h.json",
+        "tokenizer": "space",
+        "nwords": -1,           
+        "min_word_count": 1
+    }
+}
