@@ -1,5 +1,3 @@
-Here is the provided text translated into English:
-
 ![License](https://img.shields.io/apm/l/vim-mode.svg)
 
 Table of Contents:
