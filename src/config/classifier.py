@@ -1,16 +1,16 @@
-# from typing import Union, Optional, List
+from typing import Union, Optional, List
 
-# from .base import ConfigBase
-# from .components import RNNConfig
+from .base import ConfigBase
+from .components import RNNConfig
 
-# # Define a base configuration class for classifiers
-# # don't need to specify input_size and output_size; the model will determine them based on the number of labels.
-# class ClassifierConfig(ConfigBase):
-#     # input_size represents the dimension of the embedding layer
-#     input_size: Optional[int] = None
+# Define a base configuration class for classifiers
+# don't need to specify input_size and output_size; the model will determine them based on the number of labels.
+class ClassifierConfig(ConfigBase):
+    # input_size represents the dimension of the embedding layer
+    input_size: Optional[int] = None
 
-#     # output_size is the size of the output space and should correspond to the number of labels
-#     output_size: Optional[int] = None
+    # output_size is the size of the output space and should correspond to the number of labels
+    output_size: Optional[int] = None
 
 # # Define a configuration class for a CNN-based text classifier
 # class CNNClassifierConfig(ClassifierConfig):

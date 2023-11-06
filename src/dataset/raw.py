@@ -1,6 +1,6 @@
 import os
 from tabulate import tabulate
-from dataset.dictionary import Dictionary, LabelDictionary
+from .dictionary import Dictionary, LabelDictionary
 from config import PreprocessConfig
 from utils.raw_data import (
     tokenize_file,
