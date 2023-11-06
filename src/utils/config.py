@@ -30,10 +30,10 @@ def config_from_json(json_data):
     config_dict = json_to_configdict(json_data["params"])
     return getattr(config, class_name)(config_dict)
 
-# # Function to get the name of a configuration class without the suffix
-# def get_instance_name(config, drop_suffix=True):
-#     name = config.__class__.__name__
-#     return name[:-6] if drop_suffix else name
+# Function to get the name of a configuration class without the suffix
+def get_instance_name(config, drop_suffix=True):
+    name = config.__class__.__name__
+    return name[:-6] if drop_suffix else name
 
 # # Function to convert a configuration class to a string and remove the suffix
 # def stringfy(config_class, drop_suffix=True):

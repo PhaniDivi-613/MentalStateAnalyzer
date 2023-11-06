@@ -29,7 +29,7 @@ if __name__ == "__main__":
         with open(config_file) as f:
             json_data = json.load(f)
         configuration = config_from_json(json_data)
-        print(configuration)
+        print("Preprocess configuration is as follows:\n {}".format(configuration))
         raw_data = MSARawData(configuration)
         raw_data.describe()
         save_raw_data(raw_data, save_path)

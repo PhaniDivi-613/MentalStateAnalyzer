@@ -1,0 +1,18 @@
+{
+    "__class__": "DLTrainerConfig",
+    "params": {
+        "score_method": "accuracy",
+        "model" : {
+            "__class__": "DLModelConfig",
+            "params" : {
+                "embedding_layer" : {
+                    "__class__": "BertEmbeddingLayerConfig",
+                    "params" : {
+                        "model" : "bert-base-cased"
+                    }
+                    
+                }
+            }
+        }
+    }
+}

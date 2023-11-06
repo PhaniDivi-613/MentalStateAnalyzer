@@ -1,0 +1,6 @@
+{
+    "__class__": "DLTrainerConfig",
+    "params": {
+        "score_method": "accuracy"
+    }
+}
