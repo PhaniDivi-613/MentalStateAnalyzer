@@ -21,4 +21,8 @@ class RNNConfig(ConfigBase):
     dropout: float = 0.
 
     # If True, becomes a bidirectional LSTM. Default: False
+<<<<<<< HEAD
+    bidirectional: bool = True
+=======
     bidirectional: bool = False
+>>>>>>> main

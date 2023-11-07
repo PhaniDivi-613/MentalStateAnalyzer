@@ -73,4 +73,8 @@ class DLTrainerConfig(ConfigBase):
     data_loader: DataLoaderConfig = DataLoaderConfig()
 
     # Configuration for the loss criterion
+<<<<<<< HEAD
     criterion: CriterionConfig = BinaryCrossEntropyLossConfig()
+=======
+    criterion: CriterionConfig = CrossEntropyLossConfig()
+>>>>>>> main

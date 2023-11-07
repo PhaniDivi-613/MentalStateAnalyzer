@@ -20,6 +20,8 @@ class CrossEntropyLossConfig(CriterionConfig):
     # Whether to apply label smoothing
     label_smooth_eps: Optional[float] = None
 
+<<<<<<< HEAD
+
 class BinaryCrossEntropyLossConfig(CriterionConfig):
     # A manual rescaling weight given to each class. If given, it has to be a Tensor of size C.
     weight: Optional[List[float]] = None
@@ -33,3 +35,10 @@ class BinaryCrossEntropyLossConfig(CriterionConfig):
 
     # Whether to apply label smoothing
     label_smooth_eps: Optional[float] = None
+=======
+class FocalLossConfig(CriterionConfig):
+    """Focal Loss for Dense Object Detection, https://arxiv.org/abs/1708.02002"""
+    gamma = 2.0
+    alpha = 0.25
+    reduction: str = "mean"
+>>>>>>> main

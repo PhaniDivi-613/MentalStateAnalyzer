@@ -1,4 +1,5 @@
 import torch
+<<<<<<< HEAD
 from sklearn.metrics import f1_score
 
 # f1 score ignoring
@@ -14,3 +15,11 @@ def cal_accuracy(logits, labels, threshold=0.9):
     # correct_predictions = torch.eq(predicted_labels, labels)
     # accuracy = correct_predictions.float().mean()
     # return accuracy.item()
+=======
+
+
+def cal_accuracy(logits, labels):
+    predicts = torch.argmax(logits, dim=1)
+    acc = torch.mean((predicts == labels).float())
+    return acc
+>>>>>>> main

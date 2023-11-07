@@ -8,8 +8,12 @@ data_directory = os.path.join(parent_directory, "data")
 
 class DataLoaderConfig(ConfigBase):
     json_file: str = os.path.join(data_directory, "twitter-1h1h.json")
-    
+
+<<<<<<< HEAD
     raw_data_path: str = os.path.join(data_directory, "msa.joblib")
+=======
+    raw_data_path: str = os.path.join(data_directory, "textclf.joblib")
+>>>>>>> main
 
     # How many samples per batch to load (default: 32).
     batch_size: int = 32 

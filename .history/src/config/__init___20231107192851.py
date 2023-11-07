@@ -6,6 +6,7 @@ from .embedding_layer import (
 from .dl_model import DLModelConfig
 from .classifier import (
     ClassifierConfig,
+<<<<<<< HEAD
     RNNClassifierConfig,
     MRNNClassifierConfig
 )
@@ -17,3 +18,10 @@ from .criterion import (
     CrossEntropyLossConfig,
     BinaryCrossEntropyLossConfig
 )
+=======
+    RNNClassifierConfig
+)
+from .components import RNNConfig
+from .preprocess import PreprocessConfig
+from .trainer import DLTrainerConfig
+>>>>>>> main
