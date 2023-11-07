@@ -14,8 +14,8 @@ from models.embedding_layer import (
     BertEmbeddingLayer
 )
 from models.dl_model import DLModel
-from tester import DLTester
-from criterion import CrossEntropyLoss, FocalLoss
+# from tester import DLTester
+from trainer.criterion import CrossEntropyLoss, BinaryCrossEntropyLoss
 from config.optimizer import OptimizerConfig
 from config.classifier import ClassifierConfig
 from config.criterion import CriterionConfig
@@ -32,9 +32,10 @@ CONFIG_TO_CLASS = {
     "StaticEmbeddingLayerConfig": StaticEmbeddingLayer,
     "BertEmbeddingLayerConfig": BertEmbeddingLayer,
     "DLModelConfig": DLModel,
-    "DLTesterConfig": DLTester,
+    # "DLTesterConfig": DLTester,
     "CrossEntropyLossConfig": CrossEntropyLoss,
-    "FocalLossConfig": FocalLoss,
+    "BinaryCrossEntropyLossConfig": BinaryCrossEntropyLoss
+    # "FocalLossConfig": FocalLoss,
     # "TransformerClassifierConfig": TransformerClassifier
 }
 

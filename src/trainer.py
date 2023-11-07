@@ -21,14 +21,9 @@ if __name__ == "__main__":
         with open(config_file) as f:
             json_data = json.load(f)
         configuration = config_from_json(json_data)
-<<<<<<< HEAD
         print("Trainer configuration is as follows:\n {}".format(configuration))
-=======
-        # print("Trainer configuration is as follows:\n {}".format(configuration))
->>>>>>> d369cc0 (trainer half done)
-        print(configuration.__class__.__name__)
+        print()
         trainer = create_instance(configuration)
-        # trainer.train()
-        
+        trainer.train()
     else:
         print("No configuration file provided. Please use --config-file to specify one.")

@@ -11,3 +11,8 @@ from .classifier import (
 from .components import RNNConfig
 from .preprocess import PreprocessConfig
 from .trainer import DLTrainerConfig
+from .criterion import (
+    CriterionConfig,
+    CrossEntropyLossConfig,
+    BinaryCrossEntropyLossConfig
+)

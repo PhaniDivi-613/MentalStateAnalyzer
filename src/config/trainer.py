@@ -6,7 +6,7 @@ from .optimizer import OptimizerConfig, AdamConfig
 from .scheduler import SchedulerConfig
 from .data_loader import DataLoaderConfig
 from .base import ConfigBase
-from .criterion import CriterionConfig, CrossEntropyLossConfig
+from .criterion import CriterionConfig, BinaryCrossEntropyLossConfig
 from .scheduler import NoneSchedulerConfig
 
 current_directory = os.getcwd()
@@ -72,4 +72,4 @@ class DLTrainerConfig(ConfigBase):
     data_loader: DataLoaderConfig = DataLoaderConfig()
 
     # Configuration for the loss criterion
-    criterion: CriterionConfig = CrossEntropyLossConfig()
+    criterion: CriterionConfig = BinaryCrossEntropyLossConfig()

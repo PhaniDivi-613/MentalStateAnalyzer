@@ -6,7 +6,6 @@ from .config import get_instance_name
 def create_instance(config, asdict=False):
     """Create a machine learning model based on the provided configuration."""
     from .common import CONFIG_TO_CLASS
-    print(config.__class__.__name__)
     class_name = CONFIG_TO_CLASS[config.__class__.__name__]
     if asdict:
         return class_name(**config.asdict())

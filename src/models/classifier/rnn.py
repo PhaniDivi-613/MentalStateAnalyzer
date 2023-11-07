@@ -11,6 +11,7 @@ class RNNClassifier(Classifier):
 
         self.use_attention = config.use_attention
         rnn_config = config.rnn_config
+        rnn_config.input_size = config.input_size
         # rnn_config.input_size = config.input_size
         self.rnn = RNN(rnn_config)
 

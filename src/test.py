@@ -2,25 +2,44 @@ filepath = "../data/twitter-1h1h.json"
 
 import json
 import torch
-from transformers import AutoTokenizer
+from transformers import AutoTokenizer, BertTokenizer, PreTrainedTokenizerBase
 
 model_name = "bert-base-uncased"  # Replace with your chosen model
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-data_pairs = [["This is an example sentence.", "phani is bad boy"], ["This is an example sentence.", "phani is bad boy"]]
-token_ids = []
-for sentences in data_pairs:
-    tokenized_sentences = [tokenizer(sentence, truncation=True, max_length=100, return_tensors='pt')['input_ids'] for sentence in sentences]
-    token_ids.append(torch.cat(tokenized_sentences, dim=1).squeeze())
+if isinstance(tokenizer, PreTrainedTokenizerBase):
+    print("tokenizer is an instance of AutoTokenizer")
+else:
+    print("tokenizer is not an instance of AutoTokenizer")
 
-text_lengths = torch.Tensor([len(text) for text in token_ids])
-max_text_length = max(text_lengths.max().item(), 20)
-print(tokenizer.pad_token_id)
-input_ids = torch.ones(len(token_ids), max_text_length) * tokenizer.pad_token_id
-for i, tokens in enumerate(token_ids):
-        print(tokens)
-        input_ids[i][:len(tokens)] = tokens
+# Get the class of the tokenizer
+current_class = tokenizer.__class__
 
-print(input_ids)
+# Initialize a list to store the parent classes
+parent_classes = []
+
+# Iterate through the class hierarchy and collect parent classes
+while current_class is not None:
+    parent_classes.append(current_class)
+    current_class = current_class.__bases__[0] if current_class.__bases__ else None
+
+# Print the collected parent classes
+for cls in parent_classes:
+    print(cls)
+# data_pairs = [["This is an example sentence.", "phani is bad boy"], ["This is an example sentence.", "phani is bad boy"]]
+# token_ids = []
+# for sentences in data_pairs:
+#     tokenized_sentences = [tokenizer(sentence, truncation=True, max_length=100, return_tensors='pt')['input_ids'] for sentence in sentences]
+#     token_ids.append(torch.cat(tokenized_sentences, dim=1).squeeze())
+
+# text_lengths = torch.Tensor([len(text) for text in token_ids])
+# max_text_length = max(text_lengths.max().item(), 20)
+# print(tokenizer.pad_token_id)
+# input_ids = torch.ones(len(token_ids), max_text_length) * tokenizer.pad_token_id
+# for i, tokens in enumerate(token_ids):
+#         print(tokens)
+#         input_ids[i][:len(tokens)] = tokens
+
+# print(input_ids)
 
 
 # Open the file and read its contents

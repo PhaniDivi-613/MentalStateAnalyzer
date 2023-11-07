@@ -85,6 +85,7 @@ class DLTrainer(Trainer):
             dictionary_or_tokenizer,
             raw_data.label2id
         )
+        print("prepare is done")
 
     def train(self):
         for epoch in range(self.start_epoch, self.config.epochs + 1):
@@ -128,7 +129,6 @@ class DLTrainer(Trainer):
             text_tensor = text_tensor.cuda()
             text_lens = text_lens.cuda()
             labels = labels.cuda()
-
         logits = self.model(text_tensor, text_lens)
         loss = self.criterion(logits, labels)
         acc = cal_accuracy(logits, labels)
