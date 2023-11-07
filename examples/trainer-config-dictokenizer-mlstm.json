@@ -1,0 +1,20 @@
+{
+    "__class__": "DLTrainerConfig",
+    "params": {
+        "score_method": "accuracy",
+        "model" : {
+            "__class__": "DLModelConfig",
+            "params" : {
+                "classifier" : {
+                    "__class__": "MRNNClassifierConfig",
+                    "params" : {
+                        "rnn_config": {
+                            "__class__": "RNNConfig",
+                            "params": {}
+                        }
+                    } 
+                }
+            }
+        }
+    }
+}

@@ -115,15 +115,13 @@ def collate_batch_with_bert_tokenizer(tokenizer, max_seq_length, data_pairs):
     labels = []
     token_ids = []
     for sentences, lbls in data_pairs:
-        tokenized_sentences = [tokenizer(sentence, truncation=True, max_length=100, return_tensors='pt')['input_ids'] for sentence in sentences]
+        tokenized_sentences = [tokenizer(sentence, truncation=True, max_length=10, return_tensors='pt')['input_ids'] for sentence in sentences]
         token_ids.append(torch.cat(tokenized_sentences, dim=1).squeeze())
         labels.append(lbls)
 
-    text_lengths = torch.LongTensor([len(text) for text in token_ids])
-    max_text_length = max(text_lengths.max().item(), max_seq_length)
-    input_ids = torch.ones(len(token_ids), max_text_length) * tokenizer.pad_token_id
+    text_lengths = torch.LongTensor([min(len(text), max_seq_length)  for text in token_ids])
+    input_ids = torch.ones(len(token_ids), max_seq_length).long() * tokenizer.pad_token_id
     for i, tokens in enumerate(token_ids):
-        input_ids[i][:len(tokens)] = tokens
-
+        input_ids[i][:min(len(tokens), max_seq_length)] = tokens[:min(len(tokens), max_seq_length)]
     labels = torch.Tensor(labels)
     return input_ids, text_lengths, labels

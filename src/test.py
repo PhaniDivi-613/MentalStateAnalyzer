@@ -1,4 +1,36 @@
-filepath = "../data/twitter-1h1h.json"
+
+
+
+from sklearn.metrics import f1_score
+import numpy as np
+
+# Actual labels for a set of documents (multilabel classification)
+# Each row represents a document, and each column corresponds to a label
+y_true = np.array([
+    [1, 0, 1],  # Sports and Health
+    [0, 1, 0],  # Technology
+    [1, 0, 0],  # Sports
+    [0, 1, 1],  # Technology and Health
+    [1, 0, 1],  # Sports and Health
+])
+
+# Predicted labels for the same set of documents
+y_pred = np.array([
+    [1, 0, 1],  # Correct prediction
+    [0, 1, 0],  # Correct prediction
+    [1, 0, 1],  # Correct prediction
+    [1, 0, 1],  # Incorrect prediction for Technology
+    [1, 0, 0],  # Incorrect prediction for Health
+])
+
+# Calculate F1 score without ignoring any label (default behavior)
+f1_default = f1_score(y_true, y_pred, average='micro')
+print("F1 Score (Default):", f1_default)
+
+# Calculate F1 score by ignoring the "Technology" label
+f1_ignore_technology = f1_score(y_true, y_pred, average='micro', labels=[0, 2])
+print("F1 Score (Ignore Technology):", f1_ignore_technology)
+
 
 import json
 import torch

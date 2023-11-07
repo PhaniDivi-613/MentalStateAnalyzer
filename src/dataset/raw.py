@@ -74,3 +74,8 @@ class MSARawData(object):
         print(tabulate(label_table, headers, tablefmt="grid", floatfmt=".4f"))
 
         print(f"Dictionary Size: {len(self.dictionary)}")
+
+        print(f"Label to ID mapping: {self.label2id}")
+
+    def get_label_2_id(self):
+        return self.label2id

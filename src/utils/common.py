@@ -1,12 +1,7 @@
 from trainer import DLTrainer  # Circular import
 from models.classifier import (
-    # CNNClassifier,
-    # LinearClassifier,
-    RNNClassifier
-    # RCNNClassifier,
-    # DRNNClassifier,
-    # DPCNNClassifier,
-    # TransformerClassifier
+    RNNClassifier,
+    MRNNClassifier
 )
 from models.embedding_layer import (
     EmbeddingLayerConfig,
@@ -24,19 +19,13 @@ from config.scheduler import SchedulerConfig
 
 CONFIG_TO_CLASS = {
     "DLTrainerConfig": DLTrainer,
-    # "CNNClassifierConfig": CNNClassifier,
     "RNNClassifierConfig": RNNClassifier,
-    # "RCNNClassifierConfig": RCNNClassifier,
-    # "DRNNClassifierConfig": DRNNClassifier,
-    # "DPCNNClassifierConfig": DPCNNClassifier,
+    "MRNNClassifierConfig": MRNNClassifier,
     "StaticEmbeddingLayerConfig": StaticEmbeddingLayer,
     "BertEmbeddingLayerConfig": BertEmbeddingLayer,
     "DLModelConfig": DLModel,
-    # "DLTesterConfig": DLTester,
     "CrossEntropyLossConfig": CrossEntropyLoss,
     "BinaryCrossEntropyLossConfig": BinaryCrossEntropyLoss
-    # "FocalLossConfig": FocalLoss,
-    # "TransformerClassifierConfig": TransformerClassifier
 }
 
 CONFIG_CHOICES = {

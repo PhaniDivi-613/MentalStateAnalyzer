@@ -6,7 +6,8 @@ from .embedding_layer import (
 from .dl_model import DLModelConfig
 from .classifier import (
     ClassifierConfig,
-    RNNClassifierConfig
+    RNNClassifierConfig,
+    MRNNClassifierConfig
 )
 from .components import RNNConfig
 from .preprocess import PreprocessConfig

@@ -7,10 +7,7 @@
             "params" : {
                 "embedding_layer" : {
                     "__class__": "BertEmbeddingLayerConfig",
-                    "params" : {
-                        "model" : "model_dir"
-                    }
-                    
+                    "params": {}
                 }
             }
         }
