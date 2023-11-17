@@ -1,7 +1,7 @@
 import torch
 from sklearn.metrics import f1_score
 
-# f1 score ignoring
+# f1 score 
 def cal_accuracy(logits, labels, threshold=0.9):
     # Convert logits to binary predictions by thresholding at the specified threshold
     predicted_labels = (logits > threshold).int()
