@@ -1,0 +1,5 @@
+.history/data/ckpts/
+src/config/__pycache__/
+src/dataset/__pycache__/
+src/trainer/__pycache__/
+src/utils/__pycache__/
