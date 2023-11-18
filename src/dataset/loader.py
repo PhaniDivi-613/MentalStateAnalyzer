@@ -18,6 +18,40 @@ def one_hot_encode(labels, label_to_id):
         one_hot[label_id] = 1
     return one_hot
 
+class MSADataset2(Dataset):
+    def __init__(self, file_path, label_to_id):
+        
+        self.label_to_id = label_to_id
+        self.file_path = file_path
+        self.file = open(file_path, 'r')
+        self.current_position = 0
+        self.num_lines = self.count_lines()
+
+    def __getitem__(self, idx):
+        self.file.seek(self.current_position)
+        data = self.file.readline().strip()
+        if not data:
+            self.current_position = 0
+            self.file.seek(self.current_position)
+            data = self.file.readline().strip()
+        self.current_position = self.file.tell()
+        sample = json.loads(data)
+        lbls = sample["label"]
+        sentences = [post["text"] for post in sample["posts"]]
+        return sentences, one_hot_encode(lbls, self.label_to_id)
+
+    def __len__(self):
+        return self.num_lines-1
+
+    def __del__(self):
+        self.file.close()
+
+    def count_lines(self):
+        with open(self.file_path, 'r') as file:
+            file_lines = file.readlines()
+        print(len(file_lines))
+        return len(file_lines)
+
 class MSADataset(Dataset):
     def __init__(self, data, label_to_id=None):
         self.data = data
@@ -40,18 +74,12 @@ def build_data_loaders(data, tokenizer_or_dictionary, label2id, config):
     test_size = 0.2
 
     if data is None:
-        data = []
-        with open(config.json_file, 'r') as file:
-            text_data = file.read()
-        text_data = text_data.strip().split('\n')
-        json_data = [json.loads(sample) for sample in text_data]
-        for sample in json_data:
-            lbls = sample["label"]
-            sentences = [post["text"] for post in sample["posts"]]
-            data.append((sentences, lbls))
-
-    msadataset = MSADataset(data, label2id)
-    train_dataset, valid_dataset, test_dataset = random_split(msadataset, [int(train_size*len(data)), int(valid_size*len(data)), int(test_size*len(data))])
+        train_dataset = MSADataset2(config.train_file, label2id)
+        valid_dataset = MSADataset2(config.valid_file, label2id)
+        test_dataset = MSADataset2(config.test_file, label2id)
+    else:
+        msadataset = MSADataset(data, label2id)
+        train_dataset, valid_dataset, test_dataset = random_split(msadataset, [int(train_size*len(data)), int(valid_size*len(data)), int(test_size*len(data))])
 
     collate_fn = get_collate_function(tokenizer_or_dictionary, config.max_len)
     train_data_loader = DataLoader(

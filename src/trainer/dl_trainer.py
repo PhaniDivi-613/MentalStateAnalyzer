@@ -59,8 +59,8 @@ class DLTrainer(Trainer):
             raw_data.dictionary = self.checkpoint['info_for_test'][1]
             raw_data.label2id = self.checkpoint['info_for_test'][2]
 
-        if self.config.test_program:
-            raw_data.pairs = raw_data.pairs[:1000]
+        # if self.config.test_program:
+        #     raw_data.pairs = raw_data.pairs[:1000]
 
         self.config.model.classifier.output_size = len(raw_data.label2id)
 
@@ -75,7 +75,7 @@ class DLTrainer(Trainer):
         if self.use_cuda:
             self.model = self.model.cuda()
         self.train_loader, self.valid_loader, self.test_loader = build_data_loaders(
-            raw_data.pairs,
+            None,
             dictionary_or_tokenizer,
             raw_data.label2id,
             loader_config
