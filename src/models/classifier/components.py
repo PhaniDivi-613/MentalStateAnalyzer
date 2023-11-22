@@ -174,8 +174,8 @@ class MemoryAugmentedLSTMCell(nn.Module):
                                     output_gate_size=hidden_size
                                 )
         self.input_gate_memory = getattr(torch.nn, "LSTM")(hidden_size, 
-                                    hidden_size,
-                                    input_gate_size
+                                    input_gate_size,
+                                    input_gate_size,
                                     num_layers=2,
                                     bias=bias,
                                     batch_first=True,
