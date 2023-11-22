@@ -155,10 +155,43 @@ class MemoryAugmentedLSTMCell(nn.Module):
         self.output_gate_size = output_gate_size
 
         self.input_weights = nn.Linear(input_size, 4 * hidden_size, bias=bias)
-        self.hidden_weights = nn.Linear(hidden_size, 4 * hidden_size, bias=bias)
-        self.forget_gate_memory = nn.Linear(hidden_size, forget_gate_size, bias=bias)
-        self.input_gate_memory = nn.Linear(hidden_size, input_gate_size, bias=bias)
-        self.output_gate_memory = nn.Linear(hidden_size, output_gate_size, bias=bias)
+        self.hidden_weights = getattr(torch.nn, "LSTM")(hidden_size, 
+                                hidden_size, 
+                                num_layers=2,
+                                bias=bias,
+                                batch_first=True,
+                                forget_gate_size=hidden_size,
+                                input_gate_size=hidden_size,
+                                output_gate_size=hidden_size
+                            )
+        self.forget_gate_memory = getattr(torch.nn, "LSTM")(hidden_size, 
+                                    forget_gate_size, 
+                                    num_layers=2,
+                                    bias=bias,
+                                    batch_first=True,
+                                    forget_gate_size=hidden_size,
+                                    input_gate_size=hidden_size,
+                                    output_gate_size=hidden_size
+                                )
+        self.input_gate_memory = getattr(torch.nn, "LSTM")(hidden_size, 
+                                    hidden_size,
+                                    input_gate_size
+                                    num_layers=2,
+                                    bias=bias,
+                                    batch_first=True,
+                                    forget_gate_size=hidden_size,
+                                    input_gate_size=hidden_size,
+                                    output_gate_size=hidden_size
+                                )
+        self.output_gate_memory = getattr(torch.nn, "LSTM")(hidden_size, 
+                                    output_gate_size, 
+                                    num_layers=2,
+                                    bias=bias,
+                                    batch_first=True,
+                                    forget_gate_size=hidden_size,
+                                    input_gate_size=hidden_size,
+                                    output_gate_size=hidden_size
+                                )
 
     def forward(self, input, hidden):
         h_prev, c_prev = hidden
